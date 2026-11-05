@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data:; connect-src https://*.supabase.co; base-uri 'none'; form-action 'self'">
+  <title>LimpioYa · Productos de aseo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🧽 LimpioYa</h1>
+    <nav>
+      <button data-view="store">Tienda</button>
+      <button data-view="orders" id="nav-orders" hidden>Pedidos</button>
+      <button data-view="inventory" class="admin-only" hidden>Inventario</button>
+      <button data-view="purchases" class="admin-only" hidden>Compras</button>
+      <button data-view="movements" class="admin-only" hidden>Movimientos</button>
+    </nav>
+    <form id="auth">
+      <input id="email" type="email" placeholder="Correo" required maxlength="120" autocomplete="email">
+      <input id="pass" type="password" placeholder="Contraseña (mín. 8)" required minlength="8" maxlength="72" autocomplete="current-password">
+      <button type="submit" id="login">Ingresar</button>
+      <button type="button" id="signup">Registrarme</button>
+    </form>
+    <div id="session" hidden><span id="who"></span> <button id="logout">Salir</button></div>
+  </header>
+  <p id="toast" role="status"></p>
+
+  <main>
+    <section id="v-store" class="view">
+      <div id="grid" class="grid"></div>
+      <aside class="cart">
+        <h2>Carrito</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: <strong id="total">$0</strong></p>
+        <input id="address" placeholder="Dirección de entrega" maxlength="200">
+        <button id="checkout" disabled>Confirmar pedido</button>
+        <small class="muted">Debes iniciar sesión para comprar.</small>
+      </aside>
+    </section>
+    <section id="v-orders" class="view" hidden></section>
+    <section id="v-inventory" class="view" hidden></section>
+    <section id="v-purchases" class="view" hidden></section>
+    <section id="v-movements" class="view" hidden></section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
